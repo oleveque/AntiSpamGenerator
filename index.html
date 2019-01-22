@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!--Import prism.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+
+  <body>
+  	<div class="container light">
+  		<div class="section">
+  			<h1 class="center-align light green-text text-lighten-3">Anti-Spam Code Generator</h1>
+  			<p class="container flow-text center-align">This builder encodes your email address into JavaScript code to display your email address only to your visitors and not in the source code of your website.</p>
+  		</div>
+			
+			<div class="section row">
+				<div class="input-field col s12 offset-l2 l4">
+					<i class="material-icons prefix">create</i>
+          <input id="label" type="text" class="validate">
+          <label for="label">Label</label>
+        </div>
+		    <div class="input-field col s12 l4">
+		    	<i class="material-icons prefix">email</i>
+		      <input id="email" type="email" class="validate">
+		      <label for="email">Email</label>
+		    </div>
+		    <div class="col s12 center-align">
+		    	<button class="waves-effect waves-light btn-large green lighten-2" onclick="encoder()">Generate
+				    <i class="material-icons right">code</i>
+				  </button>
+		    </div>
+		  </div>
+
+		  <div class="section">
+		  	<p>Result: <strong id="previewarea">...</strong></p>
+		  	<pre><code class="lang-js">&lt;script type="text/javascript">
+	document.write(atob("</code><span id="codearea">...</span><code class="lang-js">"));
+&lt;/script></code></pre>
+				<p class="right-align">Copy and paste the code.</p>
+		  </div>
+  	</div>
+
+  	<script>
+			function encoder() {
+			  var strLabel = document.getElementById("label").value;
+			  var strEmail = document.getElementById("email").value;
+			  var strLink = "<a href=" + '"' + "mailto:" + strEmail + '"' + ">" + strLabel + "</a>";
+			  document.getElementById("previewarea").innerHTML = strLink;
+			  document.getElementById("codearea").innerHTML = window.btoa(strLink);
+			}
+		</script>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/components/prism-javascript.min.js"></script>
+  </body>
+</html>
